@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Header = () => {
     return (
         <header style={{ background: '#f0f0f0', padding: '20px' }}>

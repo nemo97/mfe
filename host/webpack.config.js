@@ -36,7 +36,7 @@ module.exports = {
         new ModuleFederationPlugin({
             name: 'host',
             remotes: {
-                headerApp: 'header@http://localhost:3001/remoteEntry.js',
+                headerApp: 'header@http://localhost:3001/remoteEntry.js',                
                 contentApp: 'content@http://localhost:3002/remoteEntry.js',
             },
         }),

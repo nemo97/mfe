@@ -3,7 +3,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 
 module.exports = {
     mode: 'development',
-    entry: './src/Header.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -37,6 +37,7 @@ module.exports = {
             filename: 'remoteEntry.js',
             exposes: {
                 './Header': './src/Header',
+                './Footer': './src/Footer',
             },
             shared: ['react', 'react-dom'],
         }),

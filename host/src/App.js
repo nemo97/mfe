@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 
 const Header = React.lazy(() => import('headerApp/Header'));
+const Footer = React.lazy(() => import('headerApp/Footer'));
 const Content = React.lazy(() => import('contentApp/Content'));
 
 const App = () => {
@@ -11,6 +12,9 @@ const App = () => {
             </Suspense>
             <Suspense fallback="Loading content...">
                 <Content />
+            </Suspense>
+             <Suspense fallback="Loading footer...">
+                <Footer />
             </Suspense>
         </div>
     );
