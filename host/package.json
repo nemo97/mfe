@@ -10,8 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  
   "dependencies": {
+    "jotai": "^2.16.1",
+    "jotai-devtools": "latest",
+     "@emotion/react": "latest",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
