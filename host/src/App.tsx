@@ -21,7 +21,7 @@ textAtom.debugLabel = 'textAtom'
 const lenAtom = atom((get) => get(textAtom).length)
 lenAtom.debugLabel = 'lenAtom'
 
-const AtomsDevtools = ({ children }) => {
+const AtomsDevtools : React.FC<{ children: any }> = ({ children }) => {
   useAtomsDevtools('demo')
   return children
 }
