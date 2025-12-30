@@ -36,7 +36,8 @@ module.exports = {
             name: 'content',
             filename: 'remoteEntry.js',
             exposes: {
-                './Content': './src/Content',
+                './Store': './src/store.js',
+                './Content': './src/Content',                
             },
             shared: ['react', 'react-dom'],
         }),
