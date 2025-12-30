@@ -6,7 +6,8 @@
   "author": "",
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "jotai": "^2.16.1",
@@ -14,7 +15,7 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-     "@babel/core": "^7.28.5",
+    "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@types/react": "^19.2.7",
