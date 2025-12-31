@@ -1,9 +1,10 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.ts',
+    // entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -45,6 +46,9 @@ module.exports = {
                 './Footer': './src/Footer',
             },
             shared: ['react', 'react-dom'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
         }),
     ],
 };
