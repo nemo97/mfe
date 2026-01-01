@@ -45,7 +45,7 @@ module.exports = {
                 './Store': './src/store.tsx',
                 './Content': './src/Content',                
             },
-            shared: ['react', 'react-dom'],
+            shared: ['react', 'react-dom', 'jotai'],
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',

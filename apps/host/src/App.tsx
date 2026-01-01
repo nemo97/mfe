@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
-// import { createStore, Provider, atom, useAtom } from 'jotai';
-// import { useAtomsDebugValue } from 'jotai-devtools';
+import { createStore, Provider, atom, useAtom } from 'jotai';
+ import { useAtomsDebugValue } from 'jotai-devtools';
 // import { useAtomsDevtools } from 'jotai-devtools/utils';
 
 const Header = React.lazy(() => import('headerApp/Header'));
@@ -10,15 +10,15 @@ const Content = React.lazy(() => import('contentApp/Content'));
 //const RemoteStore = React.lazy(() => import('contentApp/Store'));
 
 //const customStore = createStore();
-// const DebugAtoms = () => {
-//   useAtomsDebugValue()
-//   return null;
-// }
+const DebugAtoms = () => {
+  useAtomsDebugValue()
+  return null;
+}
 
-// const textAtom = atom('hello')
+const textAtom = atom('hello')
 // textAtom.debugLabel = 'textAtom'
 
-// const lenAtom = atom((get) => get(textAtom).length)
+const lenAtom = atom((get) => get(textAtom).length)
 // lenAtom.debugLabel = 'lenAtom'
 
 // const AtomsDevtools : React.FC<{ children: any }> = ({ children }) => {
@@ -26,23 +26,23 @@ const Content = React.lazy(() => import('contentApp/Content'));
 //   return children
 // }
 
-// const TextBox = () => {
-//   const [text, setText] = useAtom(textAtom)
-//   const [len] = useAtom(lenAtom)
-//   return (
-//     <span>
-//       <input value={text} onChange={(e) => setText(e.target.value)} />({len})
-//     </span>
-//   )
-// }
+const TextBox = () => {
+  const [text, setText] = useAtom(textAtom)
+  const [len] = useAtom(lenAtom)
+  return (
+    <span>
+      <input value={text} onChange={(e) => setText(e.target.value)} />({len})
+    </span>
+  )
+}
 const App = () => {
   return (
     <>
     {/* <Provider> */}
       {/* <DevTools store={customStore} /> */}
-      {/* <DebugAtoms/> */}
+      {/* { <DebugAtoms/> } */}
       {/* <AtomsDevtools> */}
-        {/* <TextBox /> */}
+        <TextBox />
         <div>
           <Suspense fallback="Loading header...">
             <Header />

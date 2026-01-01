@@ -44,6 +44,22 @@ module.exports = {
                 headerApp: 'header@http://localhost:3001/remoteEntry.js',
                 contentApp: 'content@http://localhost:3002/remoteEntry.js',
             },
+            shared: {
+                ...deps,
+                react: {
+                    singleton: true,
+                    requiredVersion: deps.react,
+                },
+                "react-dom": {
+                    singleton: true,
+                    requiredVersion: deps["react-dom"],
+                },
+                jotai: {
+                    singleton: true,
+                    requiredVersion: deps.jotai,
+                },
+            },
+
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
