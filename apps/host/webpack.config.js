@@ -25,6 +25,12 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.css$/i,
+                // Ensure you include the directory where your source CSS is located
+                include: path.resolve(__dirname, 'src'),
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            }
             // {
             //     test: /\.(js|jsx)$/,
             //     exclude: /node_modules/,

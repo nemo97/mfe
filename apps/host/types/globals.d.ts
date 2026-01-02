@@ -2,3 +2,5 @@
 // should be copied to other apps if they need the same global types
 // declare module 'headerApp/*';
 // declare module 'contentApp/*';
+
+declare module '*.css';

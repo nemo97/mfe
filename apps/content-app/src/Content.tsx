@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles.css'; // Import Tailwind CSS styles
 
 const Content: React.FC = () => {
     return (

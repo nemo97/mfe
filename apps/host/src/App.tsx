@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+
 // import { createStore, Provider, atom, useAtom } from 'jotai';
 // import { useAtomsDebugValue } from 'jotai-devtools';
 // import { useAtomsDevtools } from 'jotai-devtools/utils';
@@ -38,24 +39,31 @@ const Content = React.lazy(() => import('contentApp/Content'));
 const App = () => {
   return (
     <>
-    {/* <Provider> */}
+      {/* <Provider> */}
       {/* <DevTools store={customStore} /> */}
       {/* <DebugAtoms/> */}
       {/* <AtomsDevtools> */}
-        {/* <TextBox /> */}
-        <div>
-          <Suspense fallback="Loading header...">
-            <Header />
-          </Suspense>
-          <Suspense fallback="Loading content...">
-            <Content />
-          </Suspense>
+      {/* <TextBox /> */}
+      
+      <div className='flex flex-col items-center justify-center max-h-screen border-2 bg-gray-500'>
+        <div className='w-full'>
+        <Suspense fallback="Loading header...">
+          <Header />
+        </Suspense>
+        </div>
+        <div className='w-full h-280 overflow-auto'>
+        <Suspense fallback="Loading content...">
+          <Content />
+        </Suspense>
+        </div>
+        <div className='w-full'>
           <Suspense fallback="Loading footer...">
             <Footer />
           </Suspense>
         </div>
+      </div>
       {/* </AtomsDevtools> */}
-    {/* </Provider> */}
+      {/* </Provider> */}
     </>
   );
 };
