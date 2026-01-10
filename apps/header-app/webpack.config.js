@@ -51,7 +51,7 @@ module.exports = {
                 './Header': './src/Header',
                 './Footer': './src/Footer',
             },
-            shared: ['react', 'react-dom'],
+            shared: ['react', 'react-dom','jotai'],
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',

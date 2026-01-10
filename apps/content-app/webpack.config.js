@@ -47,11 +47,10 @@ module.exports = {
         new ModuleFederationPlugin({
             name: 'content',
             filename: 'remoteEntry.js',
-            exposes: {
-                './Store': './src/store.tsx',
+            exposes: {                
                 './Content': './src/Content',
             },
-            shared: ['react', 'react-dom'],
+            shared: ['react', 'react-dom','jotai'],
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
