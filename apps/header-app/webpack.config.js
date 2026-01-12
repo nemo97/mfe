@@ -73,10 +73,10 @@ module.exports = {
                     singleton: true,
                     requiredVersion: packageInfo.dependencies['react-dom']
                 },
-                'jotai': {
-                    singleton: true,
-                    requiredVersion: packageInfo.dependencies['jotai']
-                }
+                // 'jotai': {
+                //     singleton: true,
+                //     requiredVersion: packageInfo.dependencies['jotai']
+                // }
             },
         }),
         new HtmlWebpackPlugin({

@@ -9,6 +9,7 @@ const AtomsDevtools: React.FC<{ children: any }> = ({ children }) => {
 }
 const customStore = createStore();
 const counter = atom(0);
+counter.debugLabel = 'counterAtom-header';
 const Outer = () => {    
     return (
         <Provider store={customStore}>

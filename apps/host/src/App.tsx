@@ -2,20 +2,20 @@ import React, { Suspense } from 'react';
 
 import { createStore, Provider, atom, useAtom } from 'jotai';
 import ErrorBoundary from './ErrorBoundary';
-import { useAtomsDebugValue } from 'jotai-devtools';
+// import { useAtomsDebugValue } from 'jotai-devtools';
 import { useAtomsDevtools } from 'jotai-devtools/utils';
 
 const Header = React.lazy(() => import('headerApp/Header'));
-//const Footer = React.lazy(() => import('headerApp/Footer'));
+const Footer = React.lazy(() => import('headerApp/Footer'));
 //const Content = React.lazy(() => import('contentApp/Content'));
 
 //const RemoteStore = React.lazy(() => import('contentApp/Store'));
 
 const customStore = createStore();
-const DebugAtoms = () => {
-  useAtomsDebugValue()
-  return null;
-}
+// const DebugAtoms = () => {
+//   useAtomsDebugValue()
+//   return null;
+// }
 
 // const textAtom = atom('hello')
 // textAtom.debugLabel = 'textAtom'
@@ -25,7 +25,7 @@ const DebugAtoms = () => {
 
 const AtomsDevtools: React.FC<{ children: any }> = ({ children }) => {
   useAtomsDevtools('Shell App')
-  return children
+  return children;
 }
 
 // const TextBox = () => {
@@ -38,22 +38,21 @@ const AtomsDevtools: React.FC<{ children: any }> = ({ children }) => {
 //   )
 // }
 const counter = atom(0);
+counter.debugLabel = 'counterAtom-host';
 const App = () => {
   const [count, setCounter] = useAtom(counter);
   const onClick = () => setCounter(prev => prev + 1);
   return (
     <>
       <ErrorBoundary>
-        <Provider store={customStore}>
-        {/* <DevTools store={customStore} /> */}
-        {<DebugAtoms />}
-        <AtomsDevtools>
-          {/* <TextBox /> */}
-
           <div className='flex flex-col items-center justify-center max-h-screen border-2 bg-gray-500'>
             Test
-            <h1>{count}</h1>
-            <button onClick={onClick}>Click</button>
+            <Provider store={customStore}>
+              <AtomsDevtools>
+              <h1>{count}</h1>
+              <button onClick={onClick}>Click</button>
+              </AtomsDevtools>
+            </Provider>
             <div className='w-full'>
             <Suspense fallback="Loading header...">
               <Header />
@@ -64,14 +63,12 @@ const App = () => {
               <Content />
             </Suspense>
           </div> */}
-            {/* <div className='w-full'>
+            {<div className='w-full'>
             <Suspense fallback="Loading footer...">
               <Footer />
             </Suspense>
-          </div> */}
+          </div> }
           </div>
-        </AtomsDevtools>
-        </Provider>
       </ErrorBoundary>
     </>
   );
