@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const packageInfo = require('./package.json')
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+const gitRevisionPlugin = new GitRevisionPlugin();
+const webpack = require('webpack'); // You might need this reference for DefinePlugin
 
 module.exports = {
     mode: 'development',
@@ -44,6 +48,15 @@ module.exports = {
         ],
     },
     plugins: [
+        // Add the plugin to the plugins array
+        gitRevisionPlugin,
+        // Use DefinePlugin to make the info available in your application code
+        new webpack.DefinePlugin({
+            'process.env.VERSION': JSON.stringify(gitRevisionPlugin.version()),
+            'process.env.COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+            'process.env.BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
+            COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
+        }),
         new ModuleFederationPlugin({
             name: 'header',
             filename: 'remoteEntry.js',
@@ -51,7 +64,20 @@ module.exports = {
                 './Header': './src/Header',
                 './Footer': './src/Footer',
             },
-            shared: ['react', 'react-dom','jotai'],
+            shared: {
+                ...packageInfo.dependencies,
+                'react': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react']
+                }, 'react-dom': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react-dom']
+                },
+                'jotai': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['jotai']
+                }
+            },
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',

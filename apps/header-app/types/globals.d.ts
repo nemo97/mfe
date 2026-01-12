@@ -4,3 +4,12 @@
 // declare module 'contentApp/*';
 
 declare module '*.css';
+
+// Declare variables as properties within the 'process.env' global object
+declare namespace NodeJS {
+  interface ProcessEnv {    
+    BRANCH: string;
+    VERSION: string;
+    COMMITHASH: string;
+  }
+}

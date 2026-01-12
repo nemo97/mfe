@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-
+const packageInfo = require('./package.json')
 module.exports = {
     mode: 'development',
     entry: './src/Content.tsx',
@@ -50,7 +50,20 @@ module.exports = {
             exposes: {                
                 './Content': './src/Content',
             },
-            shared: ['react', 'react-dom','jotai'],
+            shared: {
+                ...packageInfo.dependencies,
+                'react': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react']
+                }, 'react-dom': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react-dom']
+                },
+                'jotai': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['jotai']
+                }
+            },
         }),
         new HtmlWebpackPlugin({
             template: './public/index.html',

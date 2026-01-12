@@ -6,12 +6,12 @@ import { useAtomsDebugValue } from 'jotai-devtools';
 import { useAtomsDevtools } from 'jotai-devtools/utils';
 
 const Header = React.lazy(() => import('headerApp/Header'));
-const Footer = React.lazy(() => import('headerApp/Footer'));
-const Content = React.lazy(() => import('contentApp/Content'));
+//const Footer = React.lazy(() => import('headerApp/Footer'));
+//const Content = React.lazy(() => import('contentApp/Content'));
 
 //const RemoteStore = React.lazy(() => import('contentApp/Store'));
 
-//const customStore = createStore();
+const customStore = createStore();
 const DebugAtoms = () => {
   useAtomsDebugValue()
   return null;
@@ -24,7 +24,7 @@ const DebugAtoms = () => {
 // lenAtom.debugLabel = 'lenAtom'
 
 const AtomsDevtools: React.FC<{ children: any }> = ({ children }) => {
-  useAtomsDevtools('demo')
+  useAtomsDevtools('Shell App')
   return children
 }
 
@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
       <ErrorBoundary>
-        {/* <Provider store={customStore}> */}
+        <Provider store={customStore}>
         {/* <DevTools store={customStore} /> */}
         {<DebugAtoms />}
         <AtomsDevtools>
@@ -71,7 +71,7 @@ const App = () => {
           </div> */}
           </div>
         </AtomsDevtools>
-        {/* </Provider> */}
+        </Provider>
       </ErrorBoundary>
     </>
   );

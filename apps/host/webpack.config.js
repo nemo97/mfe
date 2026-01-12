@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-
+const packageInfo = require('./package.json');
 module.exports = {
     mode: 'development',
     entry: './src/index.tsx',
@@ -49,6 +49,20 @@ module.exports = {
             remotes: {
                 headerApp: 'header@http://localhost:3001/remoteEntry.js',
                 contentApp: 'content@http://localhost:3002/remoteEntry.js',
+            },
+            shared: {
+                ...packageInfo.dependencies,
+                'react': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react']
+                }, 'react-dom': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['react-dom']
+                },
+                'jotai': {
+                    singleton: true,
+                    requiredVersion: packageInfo.dependencies['jotai']
+                }
             },
         }),
         new HtmlWebpackPlugin({
