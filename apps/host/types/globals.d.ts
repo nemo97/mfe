@@ -4,3 +4,4 @@
 // declare module 'contentApp/*';
 
 declare module '*.css';
+declare module 'pdfjs-dist/build/pdf.worker.mjs'

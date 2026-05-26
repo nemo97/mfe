@@ -10,10 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "turbo run start",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "turbo": "^2.7.2"
+    "turbo": "^2.7.2",
+    "husky": "^8.0.0"
   },
   "workspaces": [
     "apps/*",

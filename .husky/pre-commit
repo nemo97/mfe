@@ -1,0 +1,24 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# IMPORTANT: Re-connect the script to your terminal (TTY) 
+# so you can actually type an answer.
+exec < /dev/tty
+
+echo "🚀 Pre-commit Checklist:"
+echo "-----------------------"
+
+confirm() {
+  read -p "❓ $1 (y/n): " resp
+  if [ "$resp" != "y" ]; then
+    echo "❌ Commit aborted. Please $2."
+    exit 1
+  fi
+}
+
+# Add your questions here
+confirm "Did you run the tests locally?" "run npm test"
+confirm "Did you remove all 'console.log' statements?" "clean up your code"
+confirm "Is the documentation updated?" "update the docs"
+
+echo "✅ All checks passed!"
