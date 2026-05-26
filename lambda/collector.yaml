@@ -1,0 +1,28 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317 # ADOT receives data here
+      http:
+        endpoint: 0.0.0.0:4318
+
+exporters:
+  # Exporter to send data to Jaeger
+  #jaeger:  
+    #endpoint: ec2-13-58-115-238.us-east-2.compute.amazonaws.com:14250 # Address of the Jaeger Collector
+    #endpont: 172.31.41.41:14250
+    #tls:
+      #insecure: true # Set to false if using TLS
+  otlphttp:
+      endpoint: "http://18.217.16.250:4318"  
+  jaeger:
+    endpoint: "18.217.16.250:14250"
+    tls:
+      insecure: true    
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [jaeger]

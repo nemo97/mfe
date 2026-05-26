@@ -1,12 +1,6 @@
+*.ts
+!*.d.ts
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out
-
-*.js
-*.zip
-*.map
-
-*.d.ts
-node_modules
-dist
-.turbo
